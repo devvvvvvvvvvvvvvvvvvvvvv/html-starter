@@ -31,7 +31,6 @@ button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-bloc
   }
 }
 
-a {
-  position: relative;
-  display: inline-block;
+.container {
+  margin-top: 100px;
 }

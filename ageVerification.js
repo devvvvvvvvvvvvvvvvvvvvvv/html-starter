@@ -15414,7 +15414,7 @@
     }
     const Ho = e => {
         if (!e) return;
-        return `https://www.youtube.com/embed/${e}?${new URLSearchParams({autoplay:"1",loop:"1",controls:"0",rel:"0",mute:"1",loop:"1",playlist:e})}`
+        return `https://www.youtube.com/embed/${e}?${new URLSearchParams({autoplay:"1",loop:"1",controls:"0",rel:"0",mute:"1",loop:"1",playlist:e,showinfo:"0"})}`
       },
       qo = e => {
         if (!e) return;
@@ -15432,7 +15432,7 @@
       Yo = bt.iframe.withConfig({
         displayName: "BackgroundVideo__Iframe",
         componentId: "sc-rla6e7-1"
-      })(["border:none;width:100%;height:100%;", ""], (e => {
+      })(["border:none;width:43%;height:100%;", ""], (e => {
         let {
           _fixOnScroll: t
         } = e;

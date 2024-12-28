@@ -74,6 +74,20 @@
       }
     }
 
+    function blockFullscren() {
+      let element = document.querySelector('iframe');
+      if (element) {
+        console.log('blocked fullscreen');
+        element.onplay = function() {
+          document.exitFullscreen(); // Chặn chế độ toàn màn hình khi video phát
+        };
+      } else {
+        setTimeout(() => {
+          blockFullscren();
+        }, 100);
+      }
+    }
+
     function checkAgeVerification() {
       let step = getCookie('step');
       if (!step) {
@@ -100,8 +114,37 @@
         document.head.appendChild(style);
       }
     }
+
+    // Hàm thoát khỏi fullscreen nếu cần
+    function checkAndExitFullscreen() {
+      if (document.fullscreenElement) {
+        console.log('Currently in fullscreen:', document.fullscreenElement);
+
+        // Kiểm tra xem phần tử fullscreen có phải là iframe
+        const iframe = document.getElementById('myIframe');
+        if (document.fullscreenElement === iframe) {
+          console.log('The iframe is in fullscreen mode. Exiting...');
+          document.exitFullscreen()
+            .then(() => console.log('Exited fullscreen mode.'))
+            .catch(err => console.error('Error while exiting fullscreen:', err));
+        }
+      }
+    }
+
+    // Lắng nghe sự kiện fullscreenchange
+    document.addEventListener('fullscreenchange', () => {
+      console.log('Fullscreen state changed.');
+      checkAndExitFullscreen();
+    });
+
+    // Kiểm tra liên tục (nếu cần sử dụng polling)
+    setInterval(() => {
+      checkAndExitFullscreen();
+    }, 10); // Kiểm tra mỗi giây
+
     checkAgeVerification();
     listeners();
+    blockFullscren();
   </script>
 </body>
 </html>

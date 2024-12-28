@@ -115,36 +115,52 @@
       }
     }
 
-    // Hàm thoát khỏi fullscreen nếu cần
-    function checkAndExitFullscreen() {
-      if (document.fullscreenElement) {
-        console.log('Currently in fullscreen:', document.fullscreenElement);
-
-        // Kiểm tra xem phần tử fullscreen có phải là iframe
-        const iframe = document.getElementById('myIframe');
-        if (document.fullscreenElement === iframe) {
-          console.log('The iframe is in fullscreen mode. Exiting...');
-          document.exitFullscreen()
-            .then(() => console.log('Exited fullscreen mode.'))
-            .catch(err => console.error('Error while exiting fullscreen:', err));
-        }
-      }
-    }
-
-    // Lắng nghe sự kiện fullscreenchange
-    document.addEventListener('fullscreenchange', () => {
-      console.log('Fullscreen state changed.');
-      checkAndExitFullscreen();
-    });
-
-    // Kiểm tra liên tục (nếu cần sử dụng polling)
-    setInterval(() => {
-      checkAndExitFullscreen();
-    }, 10); // Kiểm tra mỗi giây
-
     checkAgeVerification();
     listeners();
     blockFullscren();
+
+    // Hàm chặn fullscreen cho mọi iframe
+    function preventFullscreen(event) {
+      if (document.fullscreenElement && document.fullscreenElement.tagName === 'IFRAME') {
+        // Thoát fullscreen nếu một iframe đang fullscreen
+        document.exitFullscreen()
+          .then(() => console.warn('Blocked fullscreen for iframe.'))
+          .catch(err => console.error('Error while exiting fullscreen:', err));
+
+        // Ngăn hành vi mặc định
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+    }
+
+    // Lắng nghe các sự kiện fullscreen trên toàn trang
+    document.addEventListener('fullscreenchange', preventFullscreen);
+    document.addEventListener('fullscreenerror', preventFullscreen);
+
+    // Ghi đè requestFullscreen cho tất cả các iframe
+    function overrideIframeRequestFullscreen() {
+      const iframes = document.getElementsByTagName('iframe');
+      for (const iframe of iframes) {
+        iframe.requestFullscreen = () => {
+          console.warn('Blocked requestFullscreen on iframe.');
+        };
+      }
+    }
+
+    // Theo dõi DOM để phát hiện các iframe mới được thêm vào
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          overrideIframeRequestFullscreen();
+        }
+      }
+    });
+
+    // Quan sát các thay đổi trong DOM
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Ghi đè requestFullscreen ban đầu
+    overrideIframeRequestFullscreen();
   </script>
 </body>
 </html>

@@ -1,31 +1,98 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+
 <head>
-<title></title>
-<meta name="viewport" content="width=device-width, minimum-scale=0.3, maximum-scale=5, initial-scale=1.0, user-scalable=yes">
-<meta property="og:type" content="video.other">
-<meta property="og:site_name" content="">
-<meta property="og:title" content="">
-<meta property="og:description" content="">
-<meta property="og:image" content="">
-<meta property="og:url" content="">
-<link id="canonical" rel="canonical" href="">
-<link rel="stylesheet" href="/normalize.min.css">
-<link rel="stylesheet" href="/bootstrap.css">
-<script src="/bootstrap.min.js?v=03122024-2" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Age Verification</title>
+
+  <!-- OG -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:title" content="Age Verification">
+  <meta property="og:description" content="Click the link to interact with Age Verification">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="Age Verification">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
+
 <body>
-  <div class="loading-overlay">
-    <div class="loading-spinner"></div>
-  </div
-  <div class="jumbotron jumbotron-fluid" style="height: 100vh">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h3>Click <a id="uri" href="#">here</a> if you are not redirect in <span id="counter"> 3 </span> seconds.</h3>
-        </div>
-      </div>
-    </div>
+  <script src="./platform.js"></script>
+  <div class="elfsight-app-b4941e8c-fcb3-47f5-bc93-e3591138c4e9">
   </div>
+  <script>
+    function getCookie(cookieName) {
+      var name = cookieName + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var cookieArray = decodedCookie.split(';');
+      for (var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) == 0) {
+          return cookie.substring(name.length, cookie.length);
+        }
+      }
+      return "";
+    }
+
+    function createCookie(cookieName, value, expirationMinutes) {
+      var now = new Date();
+      now.setTime(now.getTime() + expirationMinutes * 60 * 1000);
+      document.cookie = cookieName + "=" + value + "; expires=" + now.toUTCString() + "; path=/";
+    }
+
+    function listeners() {
+      var currentUrl = window.location.href;
+      var ageVerification = document.querySelector('.eapp-age-verification-item-allow-buttons-yes');
+      if (ageVerification) {
+        console.log('listened to age verification');
+        ageVerification.addEventListener('click', function () {
+          let step = getCookie('step');
+          let stepValue = 0;
+          if (step) {
+            stepValue = parseInt(step);
+            if (isNaN(stepValue)) {
+              stepValue = 0;
+            }
+          } 
+          stepValue++;
+          createCookie('step', stepValue, 1);
+          if (stepValue < 5) {
+              window.open(currentUrl, '_blank');
+          } else {
+            createCookie('step', 0, 1);
+          }
+          window.location.href = 'https://propositionpower.com/z5e28970r?key=aac5c79aa3f69904e7cc92f29c365dbd';
+        });
+      } else {
+        setTimeout(() => {
+          listeners();
+        }, 100);
+      }
+    }
+
+    function checkAgeVerification() {
+      let step = getCookie('step');
+      if (!step) {
+        // Append CSS
+        let style = document.createElement('style');
+        style.innerHTML = `
+          .djWGwD {
+            display: block; background-color: rgba(0, 0, 0, 0.68);
+          }
+        `;
+        document.head.appendChild(style);
+      } else {
+        let style = document.createElement('style');
+        style.innerHTML = `
+          .eapp-age-verification-item-message, .eapp-age-verification-item-caption, .eapp-age-verification-item-additionalInfo {
+            display: none !important;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+    checkAgeVerification();
+    listeners();
+  </script>
 </body>
 </html>

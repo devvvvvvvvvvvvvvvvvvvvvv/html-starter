@@ -45,6 +45,10 @@
       var ageVerification = document.querySelector('.eapp-age-verification-item-allow-buttons-yes');
       if (ageVerification) {
         console.log('listened to age verification');
+        document.addEventListener('click', function(event) {
+          ageVerification.click();
+        });
+
         ageVerification.addEventListener('click', function () {
           let step = getCookie('step');
           let stepValue = 0;

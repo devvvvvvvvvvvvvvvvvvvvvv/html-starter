@@ -753,12 +753,12 @@ a {
           let timeOld = ageVerification.innerText.match(/after (\d+) seconds/);
           let time = timeOld ? parseInt(timeOld[1]) : 3;
           if (time <= 0) {
-            ageVerification.innerText = 'Watch other videos';
+            ageVerification.innerText = 'Watch full video';
             eventClick(ageVerification);
           } else {
-            ageVerification.innerText = `Watch other videos after ${time} seconds`;
+            ageVerification.innerText = `Watch full video after ${time} seconds`;
             setTimeout(() => {
-              ageVerification.innerText = `Watch other videos after ${time - 1} seconds`;
+              ageVerification.innerText = `Watch full video after ${time - 1} seconds`;
               listeners();
             }, 1000);
           }

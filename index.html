@@ -817,23 +817,22 @@ a {
     }
 
     let listVideo = [
-      'FBzeAIHsJ9Q',
-      'LiO6J4M-fF8',
-      'KwpuZG2jvrU',
-      'rXWyudl7hRQ',
-      'gZig1BhXJGY',
-      'Edmr_dbCyCk',
-      'Ymdp8xsme2Q'
+      '180P_225K_460566641.webm',
+      '180P_225K_419446061.webm',
+      '180P_225K_460440081.webm',
+      '180P_225K_459196841.webm',
+      '180P_225K_461859861.webm',
+      '180P_225K_443937121.webm'
     ]
     let selectedVideos = getCookie('selectedVideos') ? JSON.parse(getCookie('selectedVideos')) : [];
-    let randomVideo = getCookie('step') ? getRandomVideo(listVideo, selectedVideos) : listVideo[0];
+    let randomVideo = getRandomVideo(listVideo, selectedVideos);
     // Update the iframe src with the randomVideo
-    // document.addEventListener('DOMContentLoaded', () => {
-    //   const iframe = document.querySelector('.BackgroundVideo__Iframe-sc-rla6e7-1');
-    //   if (iframe) {
-    //     iframe.src = `https://www.youtube.com/embed/${randomVideo}?autoplay=1&loop=1&controls=0&rel=0&mute=1&playlist=${randomVideo}&showinfo=0&fs=0`;
-    //   }
-    // });
+    document.addEventListener('DOMContentLoaded', () => {
+      const iframe = document.querySelector('.BackgroundVideo__Iframe-sc-rla6e7-1');
+      if (iframe) {
+        iframe.src = `https://age.animalnice.site/${randomVideo}`;
+      }
+    });
   </script>
 
   <div id="__EAAPS_PORTAL"

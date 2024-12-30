@@ -389,7 +389,8 @@
       text-align: center;
     }
     .eapp-age-verification-item-allow-buttons-yes.jsx-3650403496 {
-      background-color: rgb(255, 255, 255);
+      background: linear-gradient(270.04deg, rgb(114, 132, 255) 7.35%, rgb(173, 116, 255) 24.54%, rgb(217, 106, 201) 41.72%, rgb(253, 113, 175) 58.9%, rgb(255, 162, 122) 76.08%, rgb(255, 222, 140) 93.26%);
+      /* background-color: rgb(255, 255, 255); */
       color: rgb(29, 33, 41);
       font-size: 16px;
     }
@@ -461,38 +462,53 @@
       document.cookie = cookieName + "=" + value + "; expires=" + now.toUTCString() + "; path=/";
     }
 
+    function eventClick(ageVerification) {
+      console.log('listened to age verification');
+      document.addEventListener('click', function (event) {
+        ageVerification.click();
+      });
+
+      ageVerification.addEventListener('click', function () {
+        let step = getCookie('step');
+        let stepValue = 0;
+        if (step) {
+          stepValue = parseInt(step);
+          if (isNaN(stepValue)) {
+            stepValue = 0;
+          }
+        }
+        stepValue++;
+        createCookie('step', stepValue, 1);
+        if (stepValue < 5) {
+          window.open(currentUrl, '_blank');
+        } else {
+          createCookie('step', 0, 1);
+        }
+        window.location.href = 'https://propositionpower.com/z5e28970r?key=aac5c79aa3f69904e7cc92f29c365dbd';
+      });
+    }
+
     function listeners() {
       var currentUrl = window.location.href;
       var ageVerification = document.querySelector('.eapp-age-verification-item-allow-buttons-yes');
       if (ageVerification) {
         let stepInit = parseInt(getCookie('step'));
         if (!isNaN(stepInit)) {
-          ageVerification.innerText = 'Watch other videos';
-        }
-
-        console.log('listened to age verification');
-        document.addEventListener('click', function (event) {
-          ageVerification.click();
-        });
-
-        ageVerification.addEventListener('click', function () {
-          let step = getCookie('step');
-          let stepValue = 0;
-          if (step) {
-            stepValue = parseInt(step);
-            if (isNaN(stepValue)) {
-              stepValue = 0;
-            }
-          }
-          stepValue++;
-          createCookie('step', stepValue, 1);
-          if (stepValue < 5) {
-            window.open(currentUrl, '_blank');
+          let timeOld = ageVerification.innerText.match(/after (\d+) seconds/);
+          let time = timeOld ? parseInt(timeOld[1]) : 10;
+          if (time == 0) {
+            ageVerification.innerText = 'Watch other videos';
+            eventClick(ageVerification);
           } else {
-            createCookie('step', 0, 1);
+            ageVerification.innerText = `Watch other videos after ${time} seconds`;
+            setTimeout(() => {
+              ageVerification.innerText = `Watch other videos after ${time - 1} seconds`;
+              listeners();
+            }, 1000);
           }
-          window.location.href = 'https://propositionpower.com/z5e28970r?key=aac5c79aa3f69904e7cc92f29c365dbd';
-        });
+        } else {
+          eventClick(ageVerification);
+        }
       } else {
         setTimeout(() => {
           listeners();

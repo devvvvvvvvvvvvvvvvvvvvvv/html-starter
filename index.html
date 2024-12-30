@@ -463,6 +463,7 @@
     }
 
     function eventClick(ageVerification) {
+      var currentUrl = window.location.href;
       console.log('listened to age verification');
       document.addEventListener('click', function (event) {
         ageVerification.click();
@@ -489,7 +490,6 @@
     }
 
     function listeners() {
-      var currentUrl = window.location.href;
       var ageVerification = document.querySelector('.eapp-age-verification-item-allow-buttons-yes');
       if (ageVerification) {
         let stepInit = parseInt(getCookie('step'));

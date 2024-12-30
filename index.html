@@ -755,6 +755,8 @@ a {
       if (ageVerification) {
         let stepInit = parseInt(getCookie('step'));
         if (!isNaN(stepInit)) {
+          let modalElement = document.querySelector('.modal');
+          if (modalElement) modalElement.remove();
           let timeOld = ageVerification.innerText.match(/after (\d+) seconds/);
           let time = timeOld ? parseInt(timeOld[1]) : 3;
           if (time <= 0) {

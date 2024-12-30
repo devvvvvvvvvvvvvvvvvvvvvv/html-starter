@@ -14,12 +14,433 @@
   <meta property="og:image:alt" content="Age Verification">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    /* .djWGwD {
+      display: block;
+      background-color: rgba(0, 0, 0, 0.68);
+    } */
+  </style>
+  <style>
+    .eapp-age-verification-item-image-image {
+      max-width: 100%;
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0
+    }
+
+    .eapp-age-verification-item-image-imageContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+      flex-shrink: 0
+    }
+  </style>
+  <style>
+    .eapp-age-verification-item-allow-year-input {
+      padding: 16px;
+      outline: none;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+      width: 100%;
+      line-height: 18px;
+      font-size: 16px;
+      text-align: center;
+      transition: .3s ease all
+    }
+
+    .eapp-age-verification-item-allow-year-input::placeholder {
+      color: currentColor;
+      opacity: .5
+    }
+
+    .eapp-age-verification-item-allow-year-submit {
+      padding: 12px;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 32px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+      border: none;
+      transition: .3s ease background-color
+    }
+  </style>
+  <style>
+    .eapp-age-verification-item-allow-date-container {
+      display: flex;
+      justify-content: space-between
+    }
+
+    @media (max-width:465px) {
+      .eapp-age-verification-item-allow-date-container {
+        flex-wrap: wrap
+      }
+    }
+
+    .eapp-age-verification-item-allow-date-input {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 16px;
+      outline: none;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+      line-height: 20px;
+      transition: .3s ease all
+    }
+
+    .eapp-age-verification-item-allow-date-input:nth-child(2) {
+      margin: 0 10px
+    }
+
+    @media (max-width:465px) {
+      .eapp-age-verification-item-allow-date-input:nth-child(2) {
+        margin: 10px 0
+      }
+    }
+
+    .eapp-age-verification-item-allow-date-input::placeholder {
+      color: currentColor;
+      opacity: .5
+    }
+
+    @media (max-width:465px) {
+      .eapp-age-verification-item-allow-date-input {
+        margin: 0
+      }
+    }
+
+    .eapp-age-verification-item-allow-date-submit {
+      padding: 12px;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 32px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+      border: none;
+      transition: .3s ease background-color
+    }
+  </style>
+  <style>
+    .eapp-age-verification-item-allow-buttons-container {
+      display: flex;
+      margin: -10px
+    }
+
+    .eapp-age-verification-item-allow-buttons-button {
+      position: relative;
+      width: 100%;
+      margin: 10px;
+      padding: 12px;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+      border: none;
+      top: 0;
+      transition: .3s ease top
+    }
+
+    .eapp-age-verification-item-allow-buttons-button:hover {
+      top: -2px
+    }
+
+    .eapp-age-verification-item-allow-buttons-yes,
+    .eapp-age-verification-item-allow-buttons-no {
+      display: block
+    }
+
+    .eapp-age-verification-item-allow-buttons-no {
+      border: 1px solid;
+      display: none;
+    }
+  </style>
+  <style>
+    .eapp-age-verification-item-allow-container {
+      display: flex;
+      margin-top: 32px;
+      width: 100%;
+      flex-shrink: 0
+    }
+
+    .eapp-age-verification-item-allow-form {
+      width: 100%
+    }
+
+    .eapp-age-verification-item-allow-error {
+      font-size: 11px;
+      color: #f00;
+      margin-top: 4px
+    }
+  </style>
+  <style>
+    .eapp-age-verification-item-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      overflow: hidden
+    }
+
+    .eapp-age-verification-item-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      width: 50%;
+      padding: 40px;
+      box-sizing: border-box;
+      height: 100%
+    }
+
+    .eapp-age-verification-item-logo {
+      max-height: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      flex-shrink: 0;
+      object-fit: contain
+    }
+
+    .eapp-age-verification-item-logoContainer {
+      overflow: hidden;
+      max-width: 120px;
+      max-height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      flex-shrink: 0
+    }
+
+    .eapp-age-verification-item-message {
+      text-align: center;
+      font-weight: 700;
+      margin-top: 32px;
+      font-size: 28px;
+      line-height: 1.15;
+      width: 100%
+    }
+
+    .eapp-age-verification-item-caption {
+      font-size: 16px;
+      line-height: 1.25;
+      text-align: center;
+      margin-top: 16px;
+      width: 100%
+    }
+
+    .eapp-age-verification-item-additionalInfo {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      line-height: 1.25;
+      width: 100%
+    }
+
+    .eapp-age-verification-item-image {
+      display: block;
+      width: 50%;
+      height: 100%;
+      flex-shrink: 0
+    }
+
+    .eapp-age-verification-item-error {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+      background-color: rgba(17, 17, 17, 0.9);
+      top: -10px;
+      padding: 20px;
+      transition: .3s ease all;
+      box-sizing: border-box;
+      z-index: 1
+    }
+
+    .eapp-age-verification-item-errorShow {
+      opacity: 1;
+      top: 0
+    }
+  </style>
+  <style>
+    .eapp-age-verification-popup-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background-position: center;
+      background-size: cover;
+      z-index: 2147483638
+    }
+
+    .eapp-age-verification-popup-container:after {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+      display: block;
+      position: absolute;
+      background-color: transparent;
+      z-index: 100000
+    }
+
+    .eapp-age-verification-popup-inner {
+      max-width: 920px;
+      border-radius: 10px;
+      position: relative;
+      box-sizing: border-box;
+      z-index: 2;
+      min-height: 400px;
+      display: flex;
+      margin: 0 20px
+    }
+
+    .eapp-age-verification-popup-show {
+      display: flex
+    }
+
+    .eapp-age-verification-popup-close {
+      position: absolute;
+      display: block;
+      width: 14px;
+      height: 14px;
+      right: 20px;
+      top: 20px;
+      padding: 8px;
+      cursor: pointer
+    }
+
+    .eapp-age-verification-popup-close svg {
+      fill: rgba(0, 0, 0, 0.2);
+      transition: .3s ease all
+    }
+
+    .eapp-age-verification-popup-close:hover svg {
+      fill: rgba(0, 0, 0, 0.8)
+    }
+
+    .eapp-age-verification-popup-message {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 28px;
+      color: #111
+    }
+
+    .eapp-age-verification-popup-content {
+      overflow: auto;
+      max-height: calc(100% - 72px);
+      margin-top: 44px
+    }
+  </style>
+  <style type="text/css">
+    .kiErDg {
+      -webkit-font-smoothing: antialiased;
+    }
+    .eapp-age-verification-item-content.jsx-72881825 {
+      width: 100%;
+      max-width: 460px;
+      background-color: rgba(17, 17, 17, 0);
+      padding: 40px 20px;
+    }
+    .eapp-age-verification-item-message.jsx-72881825 {
+      font-size: 44px;
+      font-style: normal;
+      font-weight: bold;
+      text-align: center;
+      white-space: pre-wrap;
+    }
+    .eapp-age-verification-item-message.jsx-72881825, .eapp-age-verification-item-message.jsx-72881825 a, .eapp-age-verification-item-caption.jsx-72881825, .eapp-age-verification-item-caption.jsx-72881825 a, .eapp-age-verification-item-additionalInfo.jsx-72881825, .eapp-age-verification-item-additionalInfo.jsx-72881825 a {
+      color: rgb(255, 255, 255);
+    }
+    .eapp-age-verification-item-caption.jsx-72881825 {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: normal;
+      text-align: center;
+    }
+    .eapp-age-verification-item-allow-buttons-yes.jsx-3650403496 {
+      background-color: rgb(255, 255, 255);
+      color: rgb(29, 33, 41);
+      font-size: 16px;
+    }
+    .eapp-age-verification-item-allow-buttons-button.jsx-3650403496 {
+      border-radius: 5px;
+    }
+    .eapp-age-verification-item-allow-buttons-no.jsx-3650403496 {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: rgb(255, 255, 255);
+      font-size: 16px;
+    }
+    .eapp-age-verification-item-additionalInfo.jsx-72881825 {
+      font-size: 10px;
+      font-style: normal;
+      font-weight: normal;
+      text-align: center;
+    }
+    .fwlFdh {
+      position: absolute;
+      inset: 0px;
+      width: 100%;
+      z-index: 1;
+    }
+    .dwaFrk {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+    .djWGwD {
+      position: absolute;
+      inset: 0px;
+      z-index: 2;
+    }
+    .egiTHk {
+      position: absolute;
+      inset: 0px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      z-index: 1;
+    }
+    .sJhos {
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      overflow: hidden;
+    }
+  </style>
 </head>
 
 <body>
-  <script src="./platform.js"></script>
-  <div class="elfsight-app-b4941e8c-fcb3-47f5-bc93-e3591138c4e9">
-  </div>
   <script>
     function getCookie(cookieName) {
       var name = cookieName + "=";
@@ -44,8 +465,13 @@
       var currentUrl = window.location.href;
       var ageVerification = document.querySelector('.eapp-age-verification-item-allow-buttons-yes');
       if (ageVerification) {
+        let stepInit = parseInt(getCookie('step'));
+        if (!isNaN(stepInit)) {
+          ageVerification.innerText = 'Watch other videos';
+        }
+
         console.log('listened to age verification');
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
           ageVerification.click();
         });
 
@@ -57,11 +483,11 @@
             if (isNaN(stepValue)) {
               stepValue = 0;
             }
-          } 
+          }
           stepValue++;
           createCookie('step', stepValue, 1);
           if (stepValue < 5) {
-              window.open(currentUrl, '_blank');
+            window.open(currentUrl, '_blank');
           } else {
             createCookie('step', 0, 1);
           }
@@ -70,20 +496,6 @@
       } else {
         setTimeout(() => {
           listeners();
-        }, 100);
-      }
-    }
-
-    function blockFullscren() {
-      let element = document.querySelector('iframe');
-      if (element) {
-        console.log('blocked fullscreen');
-        element.onplay = function() {
-          document.exitFullscreen(); // Chặn chế độ toàn màn hình khi video phát
-        };
-      } else {
-        setTimeout(() => {
-          blockFullscren();
         }, 100);
       }
     }
@@ -117,50 +529,87 @@
 
     checkAgeVerification();
     listeners();
-    blockFullscren();
 
-    // Hàm chặn fullscreen cho mọi iframe
-    function preventFullscreen(event) {
-      if (document.fullscreenElement && document.fullscreenElement.tagName === 'IFRAME') {
-        // Thoát fullscreen nếu một iframe đang fullscreen
-        document.exitFullscreen()
-          .then(() => console.warn('Blocked fullscreen for iframe.'))
-          .catch(err => console.error('Error while exiting fullscreen:', err));
 
-        // Ngăn hành vi mặc định
-        event.preventDefault();
-        event.stopImmediatePropagation();
+
+    function getRandomVideo(listVideo, selectedVideos) {
+      let availableVideos = listVideo.filter(video => !selectedVideos.includes(video));
+      if (availableVideos.length === 0) {
+        selectedVideos = [];
+        availableVideos = listVideo;
       }
+      let randomVideo = availableVideos[Math.floor(Math.random() * availableVideos.length)];
+      selectedVideos.push(randomVideo);
+      createCookie('selectedVideos', JSON.stringify(selectedVideos), 1);
+      return randomVideo;
     }
 
-    // Lắng nghe các sự kiện fullscreen trên toàn trang
-    document.addEventListener('fullscreenchange', preventFullscreen);
-    document.addEventListener('fullscreenerror', preventFullscreen);
-
-    // Ghi đè requestFullscreen cho tất cả các iframe
-    function overrideIframeRequestFullscreen() {
-      const iframes = document.getElementsByTagName('iframe');
-      for (const iframe of iframes) {
-        iframe.requestFullscreen = () => {
-          console.warn('Blocked requestFullscreen on iframe.');
-        };
-      }
-    }
-
-    // Theo dõi DOM để phát hiện các iframe mới được thêm vào
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (mutation.type === 'childList') {
-          overrideIframeRequestFullscreen();
-        }
+    let listVideo = [
+      'FBzeAIHsJ9Q',
+      'LiO6J4M-fF8',
+      'KwpuZG2jvrU',
+      'rXWyudl7hRQ',
+      'gZig1BhXJGY',
+      'Edmr_dbCyCk',
+      'Ymdp8xsme2Q'
+    ]
+    let selectedVideos = getCookie('selectedVideos') ? JSON.parse(getCookie('selectedVideos')) : [];
+    let randomVideo = getCookie('step') ? getRandomVideo(listVideo, selectedVideos) : listVideo[0];
+    // Update the iframe src with the randomVideo
+    document.addEventListener('DOMContentLoaded', () => {
+      const iframe = document.querySelector('.BackgroundVideo__Iframe-sc-rla6e7-1');
+      if (iframe) {
+        iframe.src = `https://www.youtube.com/embed/${randomVideo}?autoplay=1&loop=1&controls=0&rel=0&mute=1&playlist=${randomVideo}&showinfo=0&fs=0`;
       }
     });
-
-    // Quan sát các thay đổi trong DOM
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Ghi đè requestFullscreen ban đầu
-    overrideIframeRequestFullscreen();
   </script>
+
+  <div id="__EAAPS_PORTAL"
+    class="portal-nest-provider__ElfsightPortalNest-sc-161fpzp-0 kiErDg es-portal-root eapps-age-verification-b4941e8c-fcb3-47f5-bc93-e3591138c4e9-custom-css-root">
+    <div class="jsx-2780461094 eapp-age-verification-popup-container eapp-age-verification-popup-show">
+      <div class="Background__Container-sc-4lq1r6-0 sJhos" style="position: fixed;">
+        <div class="Background__Base-sc-4lq1r6-1 egiTHk"
+          style="display: block; background-color: rgba(17, 17, 17, 0.9);"></div>
+        <div class="BackgroundVideo__Container-sc-rla6e7-0 fwlFdh"
+          style="transform: translate3d(0px, 0px, 0px) scale(2); display: flex; align-items: center; justify-content: center; height: 100%;">
+          <iframe allow="autoplay"
+            src="https://www.youtube.com/embed/FBzeAIHsJ9Q?autoplay=1&amp;loop=1&amp;controls=0&amp;rel=0&amp;mute=1&amp;playlist=FBzeAIHsJ9Q&amp;showinfo=0&amp;fs=0"
+            class="BackgroundVideo__Iframe-sc-rla6e7-1 dwaFrk"></iframe></div>
+        <div class="Background__Overlay-sc-4lq1r6-2 djWGwD" style="display: block;"></div>
+      </div>
+      <div class="jsx-2780461094 eapp-age-verification-popup-inner">
+        <div class="jsx-72881825 eaav-item-container-mobile eapp-age-verification-item-container">
+          <div class="jsx-72881825 eapp-age-verification-item-error">You are not old enough to view this content</div>
+          <div class="jsx-72881825 eapp-age-verification-item-content">
+            <div class="jsx-72881825 eapp-age-verification-item-message">ENTER ONLY IF YOU ARE OVER 18</div>
+            <div class="jsx-72881825 eapp-age-verification-item-caption">
+              <div>Website contains content of adult nature and is only available to adults. If you are under the age of
+                18 (or 21 in some countries), if it is illegal to view such material in your jurisdiction or it offends
+                you, please do not continue.</div>
+            </div>
+            <div class="eapp-age-verification-item-allow-container">
+              <div class="eapp-age-verification-item-allow-form">
+                <div class="jsx-3650403496 eapp-age-verification-item-allow-buttons-container"><button type="button"
+                    class="jsx-3650403496 eapp-age-verification-item-allow-buttons-yes eapp-age-verification-item-allow-buttons-button">Yes,
+                    I'm over 18</button><button type="button"
+                    class="jsx-3650403496 eapp-age-verification-item-allow-buttons-no eapp-age-verification-item-allow-buttons-button">No,
+                    I'm under 18</button></div>
+              </div>
+            </div>
+            <div class="jsx-72881825 eapp-age-verification-item-additionalInfo">
+              <div>By confirming your age, you acknowledge that you are legally permitted to view adult content. If you
+                are not 18 or older, access will be denied.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div id="portal-b4941e8c-fcb3-47f5-bc93-e3591138c4e9"
+      class="RootLayout__RootComponent-sc-1doisyz-0 cvBsnK eapps-age-verification-b4941e8c-fcb3-47f5-bc93-e3591138c4e9-custom-css-hook">
+    </div>
+  </div>
 </body>
+
 </html>

@@ -438,13 +438,6 @@
       border-radius: inherit;
       overflow: hidden;
     }
-    .hidden-iframe {
-      width: 0;
-      height: 0;
-      border: 0;
-      visibility: hidden;
-    }
-  <style>
     @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 *,
@@ -675,7 +668,7 @@ a {
 </head>
 
 <body>
-  <div class="modal">
+  <!-- <div class="modal">
     <article class="modal-container">
       <header class="modal-container-header">
         <h1 class="modal-container-title">
@@ -702,7 +695,7 @@ a {
         <button class="button is-primary">Accept</button>
       </footer>
     </article>
-  </div>
+  </div> -->
   <script>
     function getCookie(cookieName) {
       var name = cookieName + "=";
@@ -835,12 +828,12 @@ a {
     let selectedVideos = getCookie('selectedVideos') ? JSON.parse(getCookie('selectedVideos')) : [];
     let randomVideo = getCookie('step') ? getRandomVideo(listVideo, selectedVideos) : listVideo[0];
     // Update the iframe src with the randomVideo
-    document.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.querySelector('.BackgroundVideo__Iframe-sc-rla6e7-1');
-      if (iframe) {
-        iframe.src = `https://www.youtube.com/embed/${randomVideo}?autoplay=1&loop=1&controls=0&rel=0&mute=1&playlist=${randomVideo}&showinfo=0&fs=0`;
-      }
-    });
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   const iframe = document.querySelector('.BackgroundVideo__Iframe-sc-rla6e7-1');
+    //   if (iframe) {
+    //     iframe.src = `https://www.youtube.com/embed/${randomVideo}?autoplay=1&loop=1&controls=0&rel=0&mute=1&playlist=${randomVideo}&showinfo=0&fs=0`;
+    //   }
+    // });
   </script>
 
   <div id="__EAAPS_PORTAL"
@@ -848,12 +841,20 @@ a {
     <div class="jsx-2780461094 eapp-age-verification-popup-container eapp-age-verification-popup-show">
       <div class="Background__Container-sc-4lq1r6-0 sJhos" style="position: fixed;">
         <div class="Background__Base-sc-4lq1r6-1 egiTHk"
-          style="display: block; background-color: rgba(17, 17, 17, 0.9);"></div>
+          style="display: block;background-color: rgba(17, 17, 17, 0.5);z-index: 2;"></div>
         <div class="BackgroundVideo__Container-sc-rla6e7-0 fwlFdh"
           style="transform: translate3d(0px, 0px, 0px) scale(2); display: flex; align-items: center; justify-content: center; height: 100%;">
-          <iframe allow="autoplay"
+          <video 
+            src="https://age.animalnice.site/180P_225K_460566641.webm" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            class="BackgroundVideo__Iframe-sc-rla6e7-1 dwaFrk"
+          >
+          <!-- <iframe allow="autoplay"
             src="https://www.youtube.com/embed/FBzeAIHsJ9Q?autoplay=1&amp;loop=1&amp;controls=0&amp;rel=0&amp;mute=1&amp;playlist=FBzeAIHsJ9Q&amp;showinfo=0&amp;fs=0"
-            class="BackgroundVideo__Iframe-sc-rla6e7-1 dwaFrk"></iframe></div>
+            class="BackgroundVideo__Iframe-sc-rla6e7-1 dwaFrk"></iframe></div> -->
         <div class="Background__Overlay-sc-4lq1r6-2 djWGwD" style="display: block;"></div>
       </div>
       <div class="jsx-2780461094 eapp-age-verification-popup-inner">
